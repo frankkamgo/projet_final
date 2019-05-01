@@ -174,29 +174,7 @@ public class Vehicule_taxi_DAOTest {
         instance.delete(obj);
     }
 
-    /**
-     * Test of rechimm method, of class Vehicule_taxi_DAO.
-     */
-    @Test
-    public void testRechimm() throws Exception {
-        System.out.println("rechimm");
-        Vehicule_taxi obj = new Vehicule_taxi(0, "TesImmatriculation", 50, 100, "TesDescription");
-        String matrech = "TesImmatriculation";
-        Vehicule_taxi_DAO instance = new Vehicule_taxi_DAO();
-        instance.setConnection(dbConnect);
-        Vehicule_taxi result = instance.create(obj);
-        Vehicule_taxi expResult = instance.rechimm(matrech);
-        if (expResult == null) {
-            fail("exception de record introuvable ");
-        }
-        assertEquals("Immatriculation différents", expResult.getImmatriculation(), result.getImmatriculation());
-        assertEquals("litre de carburant pas identique", expResult.getCarburant(), result.getCarburant());
-        assertEquals("différents prix", expResult.getPrixkm(), result.getPrixkm());
-        assertEquals("Description différentes", expResult.getDescription(), result.getDescription());
-        assertEquals("id non généré(différents)", expResult.getIdtaxi(), result.getIdtaxi());
-        instance.delete(result);
-    }
-
+   
     /**
      * Test of rechdescption method, of class Vehicule_taxi_DAO.
      */

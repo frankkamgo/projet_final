@@ -48,7 +48,7 @@ public class Vehicule_taxi_DAO extends DAO<Vehicule_taxi> {
                     obj.setIdtaxi(idtaxi);
                     return read(idtaxi);
                 } else {
-                    throw new SQLException("erreur de création client, record introuvable");
+                    throw new SQLException("erreur de création taxi, record introuvable");
                 }
             }
         }
@@ -74,6 +74,30 @@ public class Vehicule_taxi_DAO extends DAO<Vehicule_taxi> {
             try (ResultSet rs = pstm.executeQuery()) {
                 if (rs.next()) {
                     String immatriculation = rs.getString("immatriculation");
+                    int carburant = rs.getInt("carburant");
+                    int prixkm = rs.getInt("prixkm");
+                    String description = rs.getString("description");
+                    return new Vehicule_taxi(idtaxi, immatriculation, carburant, prixkm, description);
+
+                } else {
+                    throw new SQLException("Code inconnu");
+                }
+
+            }
+        }
+    }
+    
+    
+    public Vehicule_taxi readImmatriculation(String immatriculation) throws SQLException {
+
+        String req = "select * from api_taxi where immatriculation = ?";
+
+        try (PreparedStatement pstm = dbConnect.prepareStatement(req)) {
+
+            pstm.setString(1, immatriculation);
+            try (ResultSet rs = pstm.executeQuery()) {
+                if (rs.next()) {
+                    int idtaxi = rs.getInt("idtaxi");
                     int carburant = rs.getInt("carburant");
                     int prixkm = rs.getInt("prixkm");
                     String description = rs.getString("description");
@@ -121,7 +145,7 @@ public class Vehicule_taxi_DAO extends DAO<Vehicule_taxi> {
     @Override
     public void delete(Vehicule_taxi obj) throws SQLException {
 
-        String req = "delete from api_taxi where idtaxi= ?";
+        String req = "delete from api_taxi where immatriculation=?";
         try (PreparedStatement pstm = dbConnect.prepareStatement(req)) {
 
             pstm.setInt(1, obj.getIdtaxi());
@@ -129,43 +153,21 @@ public class Vehicule_taxi_DAO extends DAO<Vehicule_taxi> {
             if (n == 0) {
                 throw new SQLException("aucune ligne vehicule_taxi effacée");
             }
+            else{
+                System.out.println("le taxi a bien été suprimé");
+            }
 
         }
     }
 
     /**
      * méthode permettant de récupérer tous les Vehicule_taxi portant un certain
-     * matricule
+     * description
      *
-     * @param matrech matricule recherché
+     * @param descrech description recherché
      * @return liste du vehicule_taxi
      * @throws SQLException nom inconnu
      */
-    public Vehicule_taxi rechimm(String matrech) throws SQLException {
-        String req = "select * from api_taxi where immatriculation = ?";
-
-        try (PreparedStatement pstm = dbConnect.prepareStatement(req)) {
-            pstm.setString(1, matrech);
-            try (ResultSet rs = pstm.executeQuery()) {
-                boolean trouve = false;
-                Vehicule_taxi retour = null;
-                while (rs.next()) {
-                    trouve = true;
-                    int idtaxi = rs.getInt("IDtaxi");
-                    String immatriculation = rs.getString("immatriculation");
-                    int carburant = rs.getInt("carburant");
-                    int prixkm = rs.getInt("prixkm");
-                    String description = rs.getString("description");
-                    retour = new Vehicule_taxi(idtaxi, immatriculation, carburant, prixkm, description);
-                }
-
-                if (!trouve) {
-                    throw new SQLException("immatricul inconnu");
-                }
-                return retour;
-            }
-        }
-    }
 
     public List<Vehicule_taxi> rechdescption(String descrech) throws SQLException {
         List<Vehicule_taxi> plusieurs = new ArrayList<>();

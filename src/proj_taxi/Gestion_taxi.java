@@ -43,7 +43,7 @@ public class Gestion_taxi {
         do {
             System.out.println("\t\t\t\tACCUEIL");
             System.out.println("");
-            System.out.println("1.GESTION_CLIENTS \n2.GESTION_TAXI\n3.affiche_vue\n4.fin");
+            System.out.println("1.GESTION_CLIENTS \n2.GESTION_TAXI\n3.AFFICHE_VUE\n4.FIN");
             System.out.print("choix de l'entité a gérer :");
             ch = sc.nextInt();
             sc.skip("\n");
