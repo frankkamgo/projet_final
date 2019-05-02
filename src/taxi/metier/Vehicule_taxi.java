@@ -22,7 +22,7 @@ public class Vehicule_taxi {
        /**
    * quantité du carburant
    */
-    private int carburant;
+    private String carburant;
        /**
    * prix du kilometre parcouru
    */
@@ -44,7 +44,7 @@ public class Vehicule_taxi {
  * @param prix du kilometre parcouru
  * @param  description du taxi
  */
-    public Vehicule_taxi(int idtaxi, String immatriculation, int carburant, int prixkm, String description) {
+    public Vehicule_taxi(int idtaxi, String immatriculation, String carburant, int prixkm, String description) {
         this.idtaxi = idtaxi;
         this.immatriculation = immatriculation;
         this.carburant = carburant;
@@ -83,14 +83,14 @@ public class Vehicule_taxi {
     * getter carburant
     * @return carburant dépensé du taxi
     */
-    public int getCarburant() {
+    public String getCarburant() {
         return carburant;
     }
 /**
      * setter carburant
      * @param carburant dépensé
      */
-    public void setCarburant(int carburant) {
+    public void setCarburant(String carburant) {
         this.carburant = carburant;
     }
 /**

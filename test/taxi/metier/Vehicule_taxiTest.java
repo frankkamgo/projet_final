@@ -99,7 +99,7 @@ public class Vehicule_taxiTest {
         System.out.println("getCarburant");
         Vehicule_taxi instance = new Vehicule_taxi();
         int expResult = 0;
-        int result = instance.getCarburant();
+        String result = instance.getCarburant();
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
@@ -111,7 +111,7 @@ public class Vehicule_taxiTest {
     @Test
     public void testSetCarburant() {
         System.out.println("setCarburant");
-        int carburant = 0;
+        String carburant = null;
         Vehicule_taxi instance = new Vehicule_taxi();
         instance.setCarburant(carburant);
         // TODO review the generated test code and remove the default call to fail.

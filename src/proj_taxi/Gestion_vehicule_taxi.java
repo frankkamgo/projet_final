@@ -75,8 +75,7 @@ public class Gestion_vehicule_taxi {
         System.out.print("immatriculation :");
         String immatriculation = sc.nextLine();
         System.out.print("carburant :");
-        int carburant = sc.nextInt();
-        sc.skip("\n");
+        String carburant = sc.nextLine();
         System.out.print("prixkm :");
         int prixkm = sc.nextInt();
         sc.skip("\n");
@@ -101,7 +100,6 @@ public class Gestion_vehicule_taxi {
             
             int choix = 0;
             String option = "";
-            sc.skip("\n");
             do {
                 do {
                     System.out.println("Menu secondaire :");

@@ -31,7 +31,7 @@ public class Vehicule_taxi_DAO extends DAO<Vehicule_taxi> {
         try (PreparedStatement pstm1 = dbConnect.prepareStatement(req1);
                 PreparedStatement pstm2 = dbConnect.prepareStatement(req2)) {
             pstm1.setString(1, obj.getImmatriculation());
-            pstm1.setInt(2, obj.getCarburant());
+            pstm1.setString(2, obj.getCarburant());
             pstm1.setInt(3, obj.getPrixkm());
             pstm1.setString(4, obj.getDescription());
             int n = pstm1.executeUpdate();
@@ -40,7 +40,7 @@ public class Vehicule_taxi_DAO extends DAO<Vehicule_taxi> {
 
             }
             pstm2.setString(1, obj.getImmatriculation());
-            pstm2.setInt(2, obj.getCarburant());
+            pstm2.setString(2, obj.getCarburant());
             pstm2.setInt(3, obj.getPrixkm());
             try (ResultSet rs = pstm2.executeQuery()) {
                 if (rs.next()) {
@@ -74,7 +74,7 @@ public class Vehicule_taxi_DAO extends DAO<Vehicule_taxi> {
             try (ResultSet rs = pstm.executeQuery()) {
                 if (rs.next()) {
                     String immatriculation = rs.getString("immatriculation");
-                    int carburant = rs.getInt("carburant");
+                    String carburant = rs.getString("carburant");
                     int prixkm = rs.getInt("prixkm");
                     String description = rs.getString("description");
                     return new Vehicule_taxi(idtaxi, immatriculation, carburant, prixkm, description);
@@ -98,7 +98,7 @@ public class Vehicule_taxi_DAO extends DAO<Vehicule_taxi> {
             try (ResultSet rs = pstm.executeQuery()) {
                 if (rs.next()) {
                     int idtaxi = rs.getInt("idtaxi");
-                    int carburant = rs.getInt("carburant");
+                    String carburant = rs.getString("carburant");
                     int prixkm = rs.getInt("prixkm");
                     String description = rs.getString("description");
                     return new Vehicule_taxi(idtaxi, immatriculation, carburant, prixkm, description);
@@ -125,7 +125,7 @@ public class Vehicule_taxi_DAO extends DAO<Vehicule_taxi> {
 
             pstm.setInt(5, obj.getIdtaxi());
             pstm.setString(1, obj.getImmatriculation());
-            pstm.setInt(2, obj.getCarburant());
+            pstm.setString(2, obj.getCarburant());
             pstm.setInt(3, obj.getPrixkm());
             pstm.setString(4, obj.getDescription());
             int n = pstm.executeUpdate();
@@ -148,7 +148,7 @@ public class Vehicule_taxi_DAO extends DAO<Vehicule_taxi> {
         String req = "delete from api_taxi where immatriculation=?";
         try (PreparedStatement pstm = dbConnect.prepareStatement(req)) {
 
-            pstm.setInt(1, obj.getIdtaxi());
+            pstm.setString(1, obj.getImmatriculation());
             int n = pstm.executeUpdate();
             if (n == 0) {
                 throw new SQLException("aucune ligne vehicule_taxi effacée");
@@ -181,7 +181,7 @@ public class Vehicule_taxi_DAO extends DAO<Vehicule_taxi> {
                     trouve = true;
                     int idtaxi = rs.getInt("idtaxi");
                     String immatriculation = rs.getString("immatriculation");
-                    int carburant = rs.getInt("carburant");
+                    String carburant = rs.getString("carburant");
                     int prixkm = rs.getInt("prixkm");
                     String description = rs.getString("description");
                     plusieurs.add(new Vehicule_taxi(idtaxi, immatriculation, carburant, prixkm, description));

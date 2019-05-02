@@ -58,10 +58,10 @@ public class Vehicule_taxi_DAOTest {
     @Test
     public void testCreate() throws Exception {
         System.out.println("create");
-        Vehicule_taxi obj = new Vehicule_taxi(0, "TesImmatriculation", 50, 100, "TesDescription");//creation d'un taxi
+        Vehicule_taxi obj = new Vehicule_taxi(0, "TesImmatriculation", "d", 100, "TesDescription");//creation d'un taxi
         Vehicule_taxi_DAO instance = new Vehicule_taxi_DAO();//objet DAO
         instance.setConnection(dbConnect);//J'établis la connexion avec la BD
-        Vehicule_taxi expResult = new Vehicule_taxi(0, "TesImmatriculation", 50, 100, "TesDescription");
+        Vehicule_taxi expResult = new Vehicule_taxi(0, "TesImmatriculation", "d", 100, "TesDescription");
         Vehicule_taxi result = instance.create(obj);//
         assertEquals("différents immatriculation", expResult.getImmatriculation(), result.getImmatriculation());
         assertEquals("litre de carburant pas identique", expResult.getCarburant(), result.getCarburant());
@@ -69,7 +69,7 @@ public class Vehicule_taxi_DAOTest {
         assertEquals("Description différentes", expResult.getDescription(), result.getDescription());
         assertNotEquals("id non généré", expResult.getIdtaxi(), result.getIdtaxi());
         int idtaxi = result.getIdtaxi();
-        obj = new Vehicule_taxi(0, "TesImmatriculation", 22, 90, "TesDescription");
+        obj = new Vehicule_taxi(0, "TesImmatriculation", "f", 90, "TesDescription");
         try {
             Vehicule_taxi result2 = instance.create(obj);
             fail("exception de doublon non déclenchée");
@@ -89,7 +89,7 @@ public class Vehicule_taxi_DAOTest {
         int idtaxi = 0;
         Vehicule_taxi_DAO instance = new Vehicule_taxi_DAO();//Je crée l'objet DAO Taxi
         instance.setConnection(dbConnect);//J'établis la connexion avec la BD
-        Vehicule_taxi obj = new Vehicule_taxi(0, "TesImmatriculation", 50, 100, "TesDescription");
+        Vehicule_taxi obj = new Vehicule_taxi(0, "TesImmatriculation", "d", 100, "TesDescription");
         Vehicule_taxi expResult = instance.create(obj);//Je récupère l'objet crée dans la BD avec son id
         idtaxi = expResult.getIdtaxi();
         Vehicule_taxi result = instance.read(idtaxi);//Je récupère l'objet de la base de donnée dans result
@@ -114,12 +114,12 @@ public class Vehicule_taxi_DAOTest {
     @Test
     public void testUpdate() throws Exception {
         System.out.println("update");
-        Vehicule_taxi obj = new Vehicule_taxi(0, "TesImmatriculation", 50, 100, "TesDescription");
+        Vehicule_taxi obj = new Vehicule_taxi(0, "TesImmatriculation", "d", 100, "TesDescription");
         Vehicule_taxi_DAO instance = new Vehicule_taxi_DAO();
         instance.setConnection(dbConnect);
         obj = instance.create(obj);
         obj.setImmatriculation("TestImmatriculation2");
-        obj.setCarburant(100);
+        obj.setCarburant("j");
         obj.setPrixkm(150);
         obj.setDescription("TestDescription2");
         Vehicule_taxi expResult = obj;//J'enregistre dans expResult l'objet obj modifié
@@ -138,7 +138,7 @@ public class Vehicule_taxi_DAOTest {
     @Test
     public void testDelete() throws Exception {
         System.out.println("delete");
-        Vehicule_taxi obj = new Vehicule_taxi(0, "TesImmatriculation", 50, 100, "TesDescription");
+        Vehicule_taxi obj = new Vehicule_taxi(0, "TesImmatriculation", "d", 100, "TesDescription");
         Vehicule_taxi_DAO instance = new Vehicule_taxi_DAO();
         instance.setConnection(dbConnect);
         obj = instance.create(obj);
@@ -184,8 +184,8 @@ public class Vehicule_taxi_DAOTest {
         String descrech = "TesDescription";
         Vehicule_taxi_DAO instance = new Vehicule_taxi_DAO();
         instance.setConnection(dbConnect);
-        Vehicule_taxi obj1 = new Vehicule_taxi(0, "TesImmatriculation", 50, 100, "TesDescription");//Je crée 2 objets avec la même description
-        Vehicule_taxi obj2 = new Vehicule_taxi(0, "TesImmatriculation2", 100, 150, "TesDescription");//car ma methode peut en retourner plusieurs
+        Vehicule_taxi obj1 = new Vehicule_taxi(0, "TesImmatriculation", "d", 100, "TesDescription");//Je crée 2 objets avec la même description
+        Vehicule_taxi obj2 = new Vehicule_taxi(0, "TesImmatriculation2", "f", 150, "TesDescription");//car ma methode peut en retourner plusieurs
         obj1 = instance.create(obj1);//Je crée mes objets dans la base de donnée
         obj2 = instance.create(obj2);
         List<Vehicule_taxi> result = instance.rechdescption(descrech);//je récupère la liste des objets trouvés lors de la recherche
