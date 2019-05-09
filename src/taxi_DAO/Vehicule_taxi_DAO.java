@@ -16,6 +16,14 @@ import taxi.metier.Vehicule_taxi;
 
 public class Vehicule_taxi_DAO extends DAO<Vehicule_taxi> {
 
+    public static Vehicule_taxi creation(Vehicule_taxi taxi) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public static List<Vehicule_taxi> rechdescription(String desRech) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
     /**
      * création d'un vehicule_taxi sur base des valeurs de son objet métier
      *
@@ -194,6 +202,35 @@ public class Vehicule_taxi_DAO extends DAO<Vehicule_taxi> {
                 }
             }
         }
+        
+        
     }
+    
+     public List<Vehicule_taxi> rechimmatriculation(String immrech) throws SQLException {
+        List<Vehicule_taxi> plusieurs = new ArrayList<>();
+        String req = "select * from api_taxi where immatriculation like ?";
 
+        try (PreparedStatement pstm = dbConnect.prepareStatement(req)) {
+            pstm.setString(1, "%" + immrech + "%");
+            try (ResultSet rs = pstm.executeQuery()) {
+                boolean trouve = false;
+                while (rs.next()) {
+                    trouve = true;
+                    int idtaxi = rs.getInt("idtaxi");
+                    String immatriculation = rs.getString("immatriculation");
+                    String carburant = rs.getString("carburant");
+                    int prixkm = rs.getInt("prixkm");
+                    String description = rs.getString("description");
+                    plusieurs.add(new Vehicule_taxi(idtaxi, immatriculation, carburant, prixkm, description));
+                }
+
+                if (!trouve) {
+                    throw new SQLException(" immatriculation  inexistante");
+                } else {
+                    return plusieurs;
+                }
+            }
+        }
+
+}
 }

@@ -83,6 +83,8 @@ public class Vehicule_taxi_DAOTest {
     /**
      * Test of read method, of class Vehicule_taxi_DAO.
      */
+    
+    
     @Test
     public void testRead() throws Exception {
         System.out.println("read");
@@ -111,6 +113,7 @@ public class Vehicule_taxi_DAOTest {
     /**
      * Test of update method, of class Vehicule_taxi_DAO.
      */
+    
     @Test
     public void testUpdate() throws Exception {
         System.out.println("update");
@@ -135,6 +138,7 @@ public class Vehicule_taxi_DAOTest {
     /**
      * Test of delete method, of class Vehicule_taxi_DAO.
      */
+   
     @Test
     public void testDelete() throws Exception {
         System.out.println("delete");
@@ -178,6 +182,7 @@ public class Vehicule_taxi_DAOTest {
     /**
      * Test of rechdescption method, of class Vehicule_taxi_DAO.
      */
+    
     @Test
     public void testRechdescption() throws Exception {
         System.out.println("rechdescption");
@@ -191,20 +196,8 @@ public class Vehicule_taxi_DAOTest {
         List<Vehicule_taxi> result = instance.rechdescption(descrech);//je récupère la liste des objets trouvés lors de la recherche
         boolean ok1 = false, ok2 = false;
         for (int i = 0; i < result.size(); i++) {
-            if (result.get(i).getImmatriculation().equalsIgnoreCase(obj1.getImmatriculation())) {
-                if (result.get(i).getCarburant() == obj1.getCarburant()) {
-                    if (result.get(i).getPrixkm() == obj1.getPrixkm()) {
-                        ok1 = true;
-                    }
-                }
-            }
-            if (result.get(i).getImmatriculation().equalsIgnoreCase(obj2.getImmatriculation())) {
-                if (result.get(i).getCarburant() == obj2.getCarburant()) {
-                    if (result.get(i).getPrixkm() == obj2.getPrixkm()) {
-                        ok2 = true;
-                    }
-                }
-            }
+            if (obj1.equals(result.get(i))) ok1=true;
+            if (obj2.equals(result.get(i))) ok2=true;
         }
         if (!ok1) {
             fail("Objet introuvable");
@@ -215,4 +208,5 @@ public class Vehicule_taxi_DAOTest {
         instance.delete(obj1);
         instance.delete(obj2);
     }
+    
 }
