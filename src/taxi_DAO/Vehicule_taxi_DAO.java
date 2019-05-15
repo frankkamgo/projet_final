@@ -170,7 +170,7 @@ public class Vehicule_taxi_DAO extends DAO<Vehicule_taxi> {
 
     /**
      * méthode permettant de récupérer tous les Vehicule_taxi portant un certain
-     * description
+ description
      *
      * @param descrech description recherché
      * @return liste du vehicule_taxi

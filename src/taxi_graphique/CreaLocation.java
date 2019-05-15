@@ -213,19 +213,25 @@ public class CreaLocation extends javax.swing.JPanel {
 
     private void btcreateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btcreateActionPerformed
      try{  
-       LocalDate dateloc =txtdateloc.ge;
+      String dateloc = txtdateloc.getText();
+        int day = Integer.parseInt(dateloc.substring(1, 2));
+        int month = Integer.parseInt(dateloc.substring(3, 5));
+        int year = Integer.parseInt(dateloc.substring(6, 10));
+        System.out.println("Nous sommes le "+day+" "+month+" "+year);
+        LocalDate date = LocalDate.of(year, month, day);
+        System.out.println(date);
        int kmtotal=Integer.parseInt(txtkmtotal.getText());
        int acompte=Integer.parseInt(txtacompte.getText());
        int total=Integer.parseInt(txttotal.getText());
        int idclient=Integer.parseInt(txtidclient.getText());
        int idtaxi=Integer.parseInt(txtidtaxi.getText());
        int idadrdebut=Integer.parseInt(txtidadrdebut.getText());
-       //int idadrdebut=Integer.parseInt(txtidardfin.getText());
+       int idadrfin=Integer.parseInt(txtidardfin.getText());
       
-       Vehicule_taxi taxi = new Vehicule_taxi(0,);
-       taxi=taxiDAO.create(taxi);
+       Location_taxi taxi = new Location_taxi(0,date,kmtotal,acompte,total,idclient,idtaxi,idadrdebut,idadrfin);
+       taxi=locationDAO.create(taxi);
        txtnumtaxi.setText(""+taxi.getIdtaxi());
-       JOptionPane.showMessageDialog(this,"taxi créé","succès",JOptionPane.INFORMATION_MESSAGE);
+       JOptionPane.showMessageDialog(this,"location créé","succès",JOptionPane.INFORMATION_MESSAGE);
        
      }
      catch(Exception e){
