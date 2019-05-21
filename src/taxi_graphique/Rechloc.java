@@ -5,34 +5,41 @@
  */
 package taxi_graphique;
 
-import java.util.ArrayList;
+import dbconnect.dbconnexion;
+import java.sql.Connection;
 import java.util.List;
-import java.util.Vector;
 import javax.swing.JOptionPane;
-import javax.swing.table.DefaultTableModel;
+import taxi_DAO.Location_taxi_DAO;
+import taxi_DAO.Client_taxi_DAO;
+import taxi_DAO.AdresseDAO;
 import taxi_DAO.Vehicule_taxi_DAO;
-import taxi.metier.Vehicule_taxi;
-
+import javax.swing.table.DefaultTableModel;
+import taxi.metier.Location_taxi;
+import java.util.Vector;
 /**
  *
  * @author Kamgo
  */
-public class Rechimmatriculation extends javax.swing.JPanel {
+public class Rechloc extends javax.swing.JPanel {
 
     /**
-     * Creates new form RechImmatricule
+     * Creates new form Rechlocationtaxi
      */
     
-   Vehicule_taxi_DAO taxiDAO=null;
+   Location_taxi_DAO locationDAO=null;
    DefaultTableModel dft1 = new DefaultTableModel();
   
-    public Rechimmatriculation() {
+    public Rechloc() {
         initComponents();
-        dft1.addColumn("numtaxi");
-        dft1.addColumn("immatriculation");
-        dft1.addColumn("carburant");
-        dft1.addColumn("prixkm");
-        dft1.addColumn("description");
+        dft1.addColumn("numlocation");
+        dft1.addColumn("dateloc");
+        dft1.addColumn("kmtotal");
+        dft1.addColumn("acompte");
+        dft1.addColumn("total");
+        dft1.addColumn("idclient");
+        dft1.addColumn("idtaxi");
+        dft1.addColumn("idadrdebut");
+        dft1.addColumn("idadrfin");
         jTable1.setModel(dft1);
 
         
@@ -40,8 +47,8 @@ public class Rechimmatriculation extends javax.swing.JPanel {
    
    
 
-    public void setTaxiDAO(Vehicule_taxi_DAO taxiDAO){
-        this.taxiDAO=taxiDAO;
+    public void setTaxiDAO(Location_taxi_DAO locationDAO){
+        this.locationDAO=locationDAO;
     }
 
     /**
@@ -53,16 +60,16 @@ public class Rechimmatriculation extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        lblimmatriculation = new javax.swing.JLabel();
-        txtimmatriculation = new javax.swing.JTextField();
+        lblidtaxi = new javax.swing.JLabel();
+        txtidtaxi = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
 
-        lblimmatriculation.setText("immatriculation");
+        lblidtaxi.setText("idtaxi");
 
-        txtimmatriculation.addActionListener(new java.awt.event.ActionListener() {
+        txtidtaxi.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtimmatriculationActionPerformed(evt);
+                txtidtaxiActionPerformed(evt);
             }
         });
 
@@ -82,44 +89,49 @@ public class Rechimmatriculation extends javax.swing.JPanel {
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(lblimmatriculation, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(txtimmatriculation, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(10, 10, 10)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(lblidtaxi)
+                        .addGap(92, 92, 92)
+                        .addComponent(txtidtaxi, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblimmatriculation)
-                    .addComponent(txtimmatriculation, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(lblidtaxi)
+                    .addComponent(txtidtaxi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(16, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtimmatriculationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtimmatriculationActionPerformed
+    private void txtidtaxiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtidtaxiActionPerformed
        try{ 
-        String immatriculationRech=txtimmatriculation.getText();
-        List<Vehicule_taxi> alc= taxiDAO.rechimmatriculation(immatriculationRech);
+       int idtaxi=Integer.parseInt(txtidtaxi.getText());
+        List<Location_taxi> alc= locationDAO.rechloc(idtaxi);
         int nr = dft1.getRowCount();
         for(int i=nr-1;i>=0;i--)dft1.removeRow(i);
-        for(Vehicule_taxi taxi:alc){
+        for(Location_taxi location:alc){
             Vector v = new Vector();
-            v.add(taxi.getIdtaxi());
-            v.add(taxi.getImmatriculation());
-            v.add(taxi.getCarburant());
-            v.add(taxi.getPrixkm());
-            v.add(taxi.getDescription());
+            v.add(location.getIdloc());
+            v.add(location.getDateloc());
+            v.add(location.getKmtotal());
+            v.add(location.getAcompte());
+            v.add(location.getTotal());
+            v.add(location.getIdclient());
+             v.add(location.getIdtaxi());
+              v.add(location.getIdadrdebuit());
+               v.add(location.getIdadrfin());
             dft1.addRow(v);
            
         }
@@ -127,13 +139,13 @@ public class Rechimmatriculation extends javax.swing.JPanel {
        catch(Exception e){
            JOptionPane.showMessageDialog(this,e.getMessage(),"ERREUR",JOptionPane.ERROR_MESSAGE);
        }
-    }//GEN-LAST:event_txtimmatriculationActionPerformed
+    }//GEN-LAST:event_txtidtaxiActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
-    private javax.swing.JLabel lblimmatriculation;
-    private javax.swing.JTextField txtimmatriculation;
+    private javax.swing.JLabel lblidtaxi;
+    private javax.swing.JTextField txtidtaxi;
     // End of variables declaration//GEN-END:variables
 }

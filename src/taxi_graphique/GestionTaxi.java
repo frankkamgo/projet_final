@@ -12,9 +12,10 @@ import java.util.List;
 import java.util.Vector;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import taxi_DAO.Location_taxi_DAO;
+import taxi_DAO.Client_taxi_DAO;
+import taxi_DAO.AdresseDAO;
 import taxi_DAO.Vehicule_taxi_DAO;
-import taxi.metier.Vehicule_taxi;
-
 /**
 /**
  *
@@ -28,6 +29,7 @@ public class GestionTaxi extends javax.swing.JFrame {
     CardLayout cardl;
     public GestionTaxi() {
         initComponents();
+         setTitle("Menu Deroulant");
          cardl=(CardLayout)this.getContentPane().getLayout();
         cardl.show(this.getContentPane(), "card6");
 
@@ -38,11 +40,17 @@ public class GestionTaxi extends javax.swing.JFrame {
         }
          
     Vehicule_taxi_DAO taxiDAO = new Vehicule_taxi_DAO();
+    Location_taxi_DAO locationDAO=new Location_taxi_DAO();
+    Client_taxi_DAO clientDAO=new Client_taxi_DAO();
     taxiDAO.setConnection(dbConnect);
-    creaTaxi1.setClientDAO(taxiDAO);
-    rechidtaxi1.setClientDAO(taxiDAO);
-    rechimmatriculation1.setClientDAO(taxiDAO);
-    rechDescription1.setClientDAO(taxiDAO);
+    locationDAO.setConnection(dbConnect);
+    creaTaxi1.setTaxiDAO(taxiDAO);
+    rechidtaxi1.setTaxiDAO(taxiDAO);
+    rechimmatriculation1.setTaxiDAO(taxiDAO);
+    rechDescription1.setTaxiDAO(taxiDAO);
+    creaLocation1.setLocationDAO(locationDAO);
+    rechidlocation1.setLocationDAO(locationDAO);
+    rechloc1.setTaxiDAO(locationDAO);
     }
 
     /**
@@ -60,6 +68,8 @@ public class GestionTaxi extends javax.swing.JFrame {
         rechDescription1 = new taxi_graphique.RechDescription();
         fond1 = new taxi_graphique.fond();
         creaLocation1 = new taxi_graphique.CreaLocation();
+        rechidlocation1 = new taxi_graphique.Rechidlocation();
+        rechloc1 = new taxi_graphique.Rechloc();
         jMenuBar1 = new javax.swing.JMenuBar();
         menutaxi = new javax.swing.JMenu();
         itemcrea = new javax.swing.JMenuItem();
@@ -68,6 +78,8 @@ public class GestionTaxi extends javax.swing.JFrame {
         itemrechimmatricule = new javax.swing.JMenuItem();
         menulocation = new javax.swing.JMenu();
         itemcrealocation = new javax.swing.JMenuItem();
+        jMenuItem1 = new javax.swing.JMenuItem();
+        jMenuItem2 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new java.awt.CardLayout());
@@ -84,11 +96,18 @@ public class GestionTaxi extends javax.swing.JFrame {
         );
         fond1Layout.setVerticalGroup(
             fond1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 353, Short.MAX_VALUE)
+            .addGap(0, 364, Short.MAX_VALUE)
         );
 
         getContentPane().add(fond1, "card6");
         getContentPane().add(creaLocation1, "card7");
+
+        rechidlocation1.setBackground(new java.awt.Color(51, 255, 204));
+        rechidlocation1.setForeground(new java.awt.Color(255, 255, 51));
+        getContentPane().add(rechidlocation1, "card8");
+
+        rechloc1.setBackground(new java.awt.Color(255, 255, 0));
+        getContentPane().add(rechloc1, "card9");
 
         menutaxi.setBorder(javax.swing.BorderFactory.createCompoundBorder());
         menutaxi.setText("Taxi");
@@ -96,7 +115,7 @@ public class GestionTaxi extends javax.swing.JFrame {
         itemcrea.setBackground(new java.awt.Color(255, 255, 0));
         itemcrea.setFont(new java.awt.Font("Segoe UI", 3, 24)); // NOI18N
         itemcrea.setForeground(new java.awt.Color(255, 51, 51));
-        itemcrea.setText("crée");
+        itemcrea.setText("créer un Taxi");
         itemcrea.setBorder(new javax.swing.border.MatteBorder(null));
         itemcrea.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -141,13 +160,33 @@ public class GestionTaxi extends javax.swing.JFrame {
         menulocation.setText("Location");
 
         itemcrealocation.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        itemcrealocation.setText("crée lacation");
+        itemcrealocation.setText("créer location");
+        itemcrealocation.setAutoscrolls(true);
         itemcrealocation.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 itemcrealocationActionPerformed(evt);
             }
         });
         menulocation.add(itemcrealocation);
+
+        jMenuItem1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jMenuItem1.setText("recherche location sur id");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
+        menulocation.add(jMenuItem1);
+
+        jMenuItem2.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jMenuItem2.setText("recherche des locations d'un taxi");
+        jMenuItem2.setActionCommand("recherche des locations d'un taxi");
+        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem2ActionPerformed(evt);
+            }
+        });
+        menulocation.add(jMenuItem2);
 
         jMenuBar1.add(menulocation);
 
@@ -157,24 +196,40 @@ public class GestionTaxi extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void itemcreaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemcreaActionPerformed
-      cardl.show(this.getContentPane(), "card3");
+      setTitle("Création d'un taxi");
+        cardl.show(this.getContentPane(), "card3");
+      
     }//GEN-LAST:event_itemcreaActionPerformed
 
     private void itemrechnumActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemrechnumActionPerformed
+        setTitle("Recherche sur l'id du taxi");
         cardl.show(this.getContentPane(), "cardrechid");
     }//GEN-LAST:event_itemrechnumActionPerformed
 
     private void itemrechimmatriculeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemrechimmatriculeActionPerformed
-       cardl.show(this.getContentPane(), "cardrechimmatriculation");
+      setTitle("Recherche sur l'immatriculation du taxi");
+        cardl.show(this.getContentPane(), "cardrechimmatriculation");
     }//GEN-LAST:event_itemrechimmatriculeActionPerformed
 
     private void itemrechdescriptionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemrechdescriptionActionPerformed
+        setTitle("Recherche sur la description du taxi");
         cardl.show(this.getContentPane(), "card5");
     }//GEN-LAST:event_itemrechdescriptionActionPerformed
 
     private void itemcrealocationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemcrealocationActionPerformed
-       cardl.show(this.getContentPane(), "card7");
+        setTitle("Création d'une Location Taxi");
+        cardl.show(this.getContentPane(), "card7");
     }//GEN-LAST:event_itemcrealocationActionPerformed
+
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+         setTitle("Recherche sur l'id Location"); 
+        cardl.show(this.getContentPane(), "card8");
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
+
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+        setTitle("Recherche des Locatikon d'un taxi");
+        cardl.show(this.getContentPane(), "card9");
+    }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -221,10 +276,14 @@ public class GestionTaxi extends javax.swing.JFrame {
     private javax.swing.JMenuItem itemrechimmatricule;
     private javax.swing.JMenuItem itemrechnum;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenu menulocation;
     private javax.swing.JMenu menutaxi;
     private taxi_graphique.RechDescription rechDescription1;
+    private taxi_graphique.Rechidlocation rechidlocation1;
     private taxi_graphique.Rechidtaxi rechidtaxi1;
     private taxi_graphique.Rechimmatriculation rechimmatriculation1;
+    private taxi_graphique.Rechloc rechloc1;
     // End of variables declaration//GEN-END:variables
 }

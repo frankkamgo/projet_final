@@ -29,7 +29,7 @@ public class TestCreaTaxi extends javax.swing.JFrame {
        
     Vehicule_taxi_DAO taxiDAO = new  Vehicule_taxi_DAO();
     taxiDAO.setConnection(dbConnect);
-    creaTaxi.setClientDAO(taxiDAO);
+    creaTaxi.setTaxiDAO(taxiDAO);
     }
 
     /**

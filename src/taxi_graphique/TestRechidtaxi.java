@@ -14,7 +14,7 @@ import dbconnect.dbconnexion;
 
 /**
  *
- * @author Michel
+ * @author Kamgo
  */
 public class TestRechidtaxi extends javax.swing.JFrame {
 
@@ -32,7 +32,7 @@ public class TestRechidtaxi extends javax.swing.JFrame {
        
     Vehicule_taxi_DAO taxiDAO = new Vehicule_taxi_DAO();
     taxiDAO.setConnection(dbConnect);
-    rechidtaxi1.setClientDAO(taxiDAO);
+    rechidtaxi1.setTaxiDAO(taxiDAO);
     }
 
     /**

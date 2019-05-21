@@ -4,33 +4,35 @@
  * and open the template in the editor.
  */
 package taxi_graphique;
+import dbconnect.dbconnexion;
 import java.sql.Connection;
 import javax.swing.JOptionPane;
+import taxi_DAO.Location_taxi_DAO;
+import taxi_DAO.Client_taxi_DAO;
+import taxi_DAO.AdresseDAO;
 import taxi_DAO.Vehicule_taxi_DAO;
 
-import dbconnect.dbconnexion;
 /**
  *
  * @author Kamgo
  */
-public class TestRechImmatriculation extends javax.swing.JFrame {
+public class TestRechloc extends javax.swing.JFrame {
 
     /**
-     * Creates new form TestRechImmatriculation
+     * Creates new form TestRechloc
      */
-    public TestRechImmatriculation() {
+    public TestRechloc() {
         initComponents();
-        
          Connection dbConnect = dbconnexion.getConnection();
-          if (dbConnect == null) {
+        if (dbConnect == null) {
             System.out.println("connection invalide");
             JOptionPane.showMessageDialog(this,"connexion invalide","ERREUR",JOptionPane.ERROR_MESSAGE);
         }
         
        
-  Vehicule_taxi_DAO taxiDAO = new Vehicule_taxi_DAO();
-    taxiDAO.setConnection(dbConnect);
-    rechimmatriculation1.setTaxiDAO(taxiDAO);
+    Location_taxi_DAO locationDAO = new  Location_taxi_DAO();
+    locationDAO.setConnection(dbConnect);
+    rechloc1.setTaxiDAO(locationDAO);
     }
 
     /**
@@ -42,7 +44,7 @@ public class TestRechImmatriculation extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        rechimmatriculation1 = new taxi_graphique.Rechimmatriculation();
+        rechloc1 = new taxi_graphique.Rechloc();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -51,14 +53,12 @@ public class TestRechImmatriculation extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(rechimmatriculation1, javax.swing.GroupLayout.PREFERRED_SIZE, 405, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 10, Short.MAX_VALUE))
+                .addComponent(rechloc1, javax.swing.GroupLayout.PREFERRED_SIZE, 479, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(rechimmatriculation1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addComponent(rechloc1, javax.swing.GroupLayout.DEFAULT_SIZE, 350, Short.MAX_VALUE)
         );
 
         pack();
@@ -81,25 +81,25 @@ public class TestRechImmatriculation extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(TestRechImmatriculation.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TestRechloc.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(TestRechImmatriculation.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TestRechloc.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(TestRechImmatriculation.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TestRechloc.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(TestRechImmatriculation.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TestRechloc.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new TestRechImmatriculation().setVisible(true);
+                new TestRechloc().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private taxi_graphique.Rechimmatriculation rechimmatriculation1;
+    private taxi_graphique.Rechloc rechloc1;
     // End of variables declaration//GEN-END:variables
 }

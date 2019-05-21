@@ -3,7 +3,7 @@
 <Form version="1.3" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JPanelFormInfo">
   <Properties>
     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-      <Color blue="ff" green="ff" red="66" type="rgb"/>
+      <Color blue="0" green="ff" red="ff" type="rgb"/>
     </Property>
   </Properties>
   <AuxValues>
@@ -27,18 +27,28 @@
                   <Group type="102" attributes="0">
                       <EmptySpace min="-2" pref="16" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="llblnumtaxi" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="lblimmatriculation" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="lblprixkm" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="lbldescription" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="llblnumlocation" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblacompte" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="lbltotal" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
+                              <Component id="ldlidadrfin" alignment="0" max="32767" attributes="0"/>
+                              <Component id="lblidadrdebut" alignment="0" max="32767" attributes="0"/>
+                              <Component id="lblidtaxi" alignment="0" max="32767" attributes="0"/>
+                              <Component id="lblidclient" alignment="0" max="32767" attributes="0"/>
+                              <Component id="lbldatelocation" alignment="0" max="32767" attributes="0"/>
+                          </Group>
                       </Group>
                       <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="txtdescription" min="-2" max="-2" attributes="0"/>
-                          <Component id="txtprixkm" min="-2" max="-2" attributes="0"/>
-                          <Component id="txtcarburant" min="-2" max="-2" attributes="0"/>
-                          <Component id="txtnumtaxi" min="-2" max="-2" attributes="0"/>
-                          <Component id="txtimmatriculation" min="-2" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="txttotal" max="32767" attributes="0"/>
+                          <Component id="txtacompte" max="32767" attributes="0"/>
+                          <Component id="txtkmtotal" max="32767" attributes="0"/>
+                          <Component id="txtnumlocation" max="32767" attributes="0"/>
+                          <Component id="txtdate" max="32767" attributes="0"/>
+                          <Component id="txtidclient" alignment="0" max="32767" attributes="0"/>
+                          <Component id="txtidtaxi" max="32767" attributes="0"/>
+                          <Component id="txtidadrdebut" max="32767" attributes="0"/>
+                          <Component id="txtidadrfin" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                   </Group>
@@ -46,7 +56,7 @@
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" attributes="0">
                               <EmptySpace min="-2" pref="16" max="-2" attributes="0"/>
-                              <Component id="lblcarburant" min="-2" max="-2" attributes="0"/>
+                              <Component id="lblkmtotal" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
                               <Component id="btrech" min="-2" max="-2" attributes="0"/>
@@ -67,30 +77,50 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="llblnumtaxi" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="txtnumtaxi" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="llblnumlocation" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="txtnumlocation" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="lblimmatriculation" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="txtimmatriculation" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="lbldatelocation" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="txtdate" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="lblcarburant" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="txtcarburant" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="lblkmtotal" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="txtkmtotal" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="lblprixkm" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="txtprixkm" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="lblacompte" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="txtacompte" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="lbldescription" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="txtdescription" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="lbltotal" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="txttotal" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="135" max="32767" attributes="0"/>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="lblidclient" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="txtidclient" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="lblidtaxi" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="txtidtaxi" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="lblidadrdebut" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="txtidadrdebut" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="ldlidadrfin" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="txtidadrfin" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace pref="16" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="btmaj" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="btdel" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -101,87 +131,87 @@
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Component class="javax.swing.JLabel" name="lblimmatriculation">
+    <Component class="javax.swing.JLabel" name="lbldatelocation">
       <Properties>
-        <Property name="text" type="java.lang.String" value="immatriculation"/>
+        <Property name="text" type="java.lang.String" value="date_location"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="llblnumtaxi">
+    <Component class="javax.swing.JLabel" name="llblnumlocation">
       <Properties>
-        <Property name="text" type="java.lang.String" value="num&#xe9;ro du taxi"/>
+        <Property name="text" type="java.lang.String" value="num&#xe9;ro du location"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="lblcarburant">
+    <Component class="javax.swing.JLabel" name="lblkmtotal">
       <Properties>
-        <Property name="text" type="java.lang.String" value="carburant"/>
+        <Property name="text" type="java.lang.String" value="kmtotal"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="lblprixkm">
+    <Component class="javax.swing.JLabel" name="lblacompte">
       <Properties>
-        <Property name="text" type="java.lang.String" value="prixkm"/>
+        <Property name="text" type="java.lang.String" value="acompte"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="lbldescription">
+    <Component class="javax.swing.JLabel" name="lbltotal">
       <Properties>
-        <Property name="text" type="java.lang.String" value="description"/>
+        <Property name="text" type="java.lang.String" value="total"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="txtnumtaxi">
+    <Component class="javax.swing.JTextField" name="txtnumlocation">
       <Properties>
         <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
           <Dimension value="[50, 20]"/>
         </Property>
         <Property name="nextFocusableComponent" type="java.awt.Component" editor="org.netbeans.modules.form.ComponentChooserEditor">
-          <ComponentRef name="txtimmatriculation"/>
+          <ComponentRef name="txtdate"/>
         </Property>
         <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
           <Dimension value="[150, 30]"/>
         </Property>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtnumtaxiActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtnumlocationActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JTextField" name="txtcarburant">
+    <Component class="javax.swing.JTextField" name="txtkmtotal">
       <Properties>
         <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
           <Dimension value="[50, 20]"/>
         </Property>
         <Property name="nextFocusableComponent" type="java.awt.Component" editor="org.netbeans.modules.form.ComponentChooserEditor">
-          <ComponentRef name="txtprixkm"/>
+          <ComponentRef name="txtacompte"/>
         </Property>
         <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
           <Dimension value="[150, 30]"/>
         </Property>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="txtimmatriculation">
+    <Component class="javax.swing.JTextField" name="txtdate">
       <Properties>
         <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
           <Dimension value="[50, 20]"/>
         </Property>
         <Property name="nextFocusableComponent" type="java.awt.Component" editor="org.netbeans.modules.form.ComponentChooserEditor">
-          <ComponentRef name="txtcarburant"/>
+          <ComponentRef name="txtkmtotal"/>
         </Property>
         <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
           <Dimension value="[150, 30]"/>
         </Property>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="txtprixkm">
+    <Component class="javax.swing.JTextField" name="txtacompte">
       <Properties>
         <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
           <Dimension value="[50, 20]"/>
         </Property>
         <Property name="nextFocusableComponent" type="java.awt.Component" editor="org.netbeans.modules.form.ComponentChooserEditor">
-          <ComponentRef name="txtdescription"/>
+          <ComponentRef name="txttotal"/>
         </Property>
         <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
           <Dimension value="[150, 30]"/>
         </Property>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="txtdescription">
+    <Component class="javax.swing.JTextField" name="txttotal">
       <Properties>
         <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
           <Dimension value="[50, 20]"/>
@@ -223,6 +253,34 @@
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btdelActionPerformed"/>
       </Events>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lblidclient">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="id du client"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="txtidclient">
+    </Component>
+    <Component class="javax.swing.JLabel" name="lblidtaxi">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="id du taxi"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="txtidtaxi">
+    </Component>
+    <Component class="javax.swing.JLabel" name="lblidadrdebut">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="id adr debut "/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="txtidadrdebut">
+    </Component>
+    <Component class="javax.swing.JLabel" name="ldlidadrfin">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="id adr fin"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="txtidadrfin">
     </Component>
   </SubComponents>
 </Form>

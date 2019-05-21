@@ -23,7 +23,7 @@ public class CreaTaxi extends javax.swing.JPanel {
         initComponents();
     }
 
-    public void setClientDAO(Vehicule_taxi_DAO taxiDAO){
+    public void setTaxiDAO(Vehicule_taxi_DAO taxiDAO){
         this.taxiDAO=taxiDAO;
     }
     

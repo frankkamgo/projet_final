@@ -12,6 +12,7 @@ import java.time.LocalDate;
 import java.util.*;
 import taxi.metier.Client_taxi;
 import taxi.metier.Location_taxi;
+import taxi.metier.Vehicule_taxi;
 
 public class Location_taxi_DAO extends DAO<Location_taxi> {
 
@@ -103,10 +104,10 @@ public class Location_taxi_DAO extends DAO<Location_taxi> {
      */
     @Override
     public Location_taxi update(Location_taxi obj) throws SQLException {
-        String req = "update api_locationtaxi set dateloc=?,kmtotal=?,acompte=?,total=?,idclient=?,idtaxi=?,idadrdebuit=?,idadrfin=? where idloc= ?";
+        String req = "update api_locationtaxi set dateloc=?,kmtotal=?,acompte=?,total=?,idclient=?,idtaxi=?,idadrdebut=?,idadrfin=? where idloc= ?";
         try (PreparedStatement pstm = dbConnect.prepareStatement(req)) {
 
-            pstm.setInt(8, obj.getIdloc());
+            pstm.setInt(9, obj.getIdloc());
             pstm.setDate(1, java.sql.Date.valueOf(obj.getDateloc()));//transformer une LocalDate en Date sql
             pstm.setDouble(2, obj.getKmtotal());
             pstm.setDouble(3, obj.getAcompte());
@@ -173,5 +174,37 @@ public class Location_taxi_DAO extends DAO<Location_taxi> {
         }
 
     }
+    
+     public List<Location_taxi> rechloc(int idrech) throws SQLException {
+        List<Location_taxi> plusieurs = new ArrayList<>();
+        String req = "select * from api_locationtaxi where idtaxi= ?";
+
+        try (PreparedStatement pstm = dbConnect.prepareStatement(req)) {
+            pstm.setInt(1,idrech );
+            try (ResultSet rs = pstm.executeQuery()) {
+                boolean trouve = false;
+                while (rs.next()) {
+                    trouve = true;
+                    int idloc = rs.getInt("idloc");
+                    LocalDate date=rs.getDate("dateloc").toLocalDate();
+                   int kmtotal = rs.getInt("kmtotal");
+                   int acompte = rs.getInt("acompte");
+                   int total = rs.getInt("total");
+                   int idclient = rs.getInt("idclient");
+                   int idtaxi = rs.getInt("idtaxi");
+                   int idadrdebut = rs.getInt("idadrdebut");
+                   int idadrfin = rs.getInt("idadrfin");
+                    
+                    plusieurs.add(new Location_taxi(idloc,date,kmtotal,acompte,total,idclient,idtaxi,idadrdebut,idadrfin));
+                }
+
+                if (!trouve) {
+                    throw new SQLException(" tout les location inexistant");
+                } else {
+                    return plusieurs;
+                }
+            }
+        }
+     }
 
 }

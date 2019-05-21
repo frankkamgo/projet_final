@@ -28,7 +28,7 @@ public class CreaLocation extends javax.swing.JPanel {
         initComponents();
     }
 
-    public void setClientDAO(Location_taxi_DAO locationDAO){
+    public void setLocationDAO(Location_taxi_DAO locationDAO){
         this.locationDAO=locationDAO;
     }
     
@@ -214,28 +214,36 @@ public class CreaLocation extends javax.swing.JPanel {
     private void btcreateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btcreateActionPerformed
      try{  
       String dateloc = txtdateloc.getText();
-        int day = Integer.parseInt(dateloc.substring(1, 2));
-        int month = Integer.parseInt(dateloc.substring(3, 5));
-        int year = Integer.parseInt(dateloc.substring(6, 10));
+        int day = Integer.parseInt(dateloc.substring(8, 10));
+        int month = Integer.parseInt(dateloc.substring(5, 7));
+        int year = Integer.parseInt(dateloc.substring(0, 4));
         System.out.println("Nous sommes le "+day+" "+month+" "+year);
         LocalDate date = LocalDate.of(year, month, day);
-        System.out.println(date);
+        System.out.println(""+date);
        int kmtotal=Integer.parseInt(txtkmtotal.getText());
+         System.out.println(kmtotal);
        int acompte=Integer.parseInt(txtacompte.getText());
+       System.out.println(acompte);
        int total=Integer.parseInt(txttotal.getText());
+       System.out.println(total);
        int idclient=Integer.parseInt(txtidclient.getText());
+       System.out.println(idclient);
        int idtaxi=Integer.parseInt(txtidtaxi.getText());
+       System.out.println(idtaxi);
        int idadrdebut=Integer.parseInt(txtidadrdebut.getText());
+       System.out.println(idadrdebut);
        int idadrfin=Integer.parseInt(txtidardfin.getText());
-      
+      System.out.println(idadrfin);
        Location_taxi taxi = new Location_taxi(0,date,kmtotal,acompte,total,idclient,idtaxi,idadrdebut,idadrfin);
        taxi=locationDAO.create(taxi);
+         System.out.println("ça passe");
        txtnumtaxi.setText(""+taxi.getIdtaxi());
        JOptionPane.showMessageDialog(this,"location créé","succès",JOptionPane.INFORMATION_MESSAGE);
        
      }
      catch(Exception e){
         JOptionPane.showMessageDialog(this,e.getMessage(),"ERREUR",JOptionPane.ERROR_MESSAGE);
+         System.out.println(e);
      }
                
     }//GEN-LAST:event_btcreateActionPerformed

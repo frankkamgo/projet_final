@@ -78,6 +78,7 @@ public class Location_taxi extends Subject{
 
     public void setVehicule(Vehicule_taxi vehicule) {
         this.vehicule = vehicule;
+        client.update("le taxi a changé, maintenant c'est "+vehicule.getIdtaxi());
     }
 
     public Adressetaxi getIdadrdebuit() {

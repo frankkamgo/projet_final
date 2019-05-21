@@ -25,7 +25,7 @@ public class Rechidtaxi extends javax.swing.JPanel {
         initComponents();
     }
 
-    public void setClientDAO(Vehicule_taxi_DAO taxiDAO){
+    public void setTaxiDAO(Vehicule_taxi_DAO taxiDAO){
         this.taxiDAO=taxiDAO;
     }
     
@@ -51,6 +51,8 @@ public class Rechidtaxi extends javax.swing.JPanel {
         btmaj = new javax.swing.JButton();
         btrech = new javax.swing.JButton();
         btdel = new javax.swing.JButton();
+
+        setBackground(new java.awt.Color(102, 255, 255));
 
         lblimmatriculation.setText("immatriculation");
 
@@ -186,11 +188,8 @@ public class Rechidtaxi extends javax.swing.JPanel {
        String immatriculation=txtimmatriculation.getText();
        String carburant=txtcarburant.getText();
            int prixkm=Integer.parseInt(txtprixkm.getText());
-       
-   
        String description= txtdescription.getText();
        
-      
        Vehicule_taxi taxi = new Vehicule_taxi(numtaxi,immatriculation,carburant,prixkm,description);
        taxiDAO.update(taxi);
        JOptionPane.showMessageDialog(this,"taxi mis à jour","succès",JOptionPane.INFORMATION_MESSAGE);

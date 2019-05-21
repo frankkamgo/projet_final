@@ -40,7 +40,7 @@ public class RechDescription extends javax.swing.JPanel {
    
    
 
-    public void setClientDAO(Vehicule_taxi_DAO taxiDAO){
+    public void setTaxiDAO(Vehicule_taxi_DAO taxiDAO){
         this.taxiDAO=taxiDAO;
     }
 
